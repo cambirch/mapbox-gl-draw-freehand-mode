@@ -88,7 +88,7 @@ FreehandMode.fire = function () {
 
 FreehandMode.onStop = function (state, ...args) {
   MapboxGlDraw.modes.draw_polygon.onStop.call(this, state, ...args);
-  this.fireUpdate();
+  //   this.fireUpdate();
   //   doubleClickZoom.enable(this);
 
   setTimeout(() => {
