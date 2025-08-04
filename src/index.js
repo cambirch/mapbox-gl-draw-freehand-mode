@@ -1,3 +1,4 @@
+import DrawPolygon from "@mapbox/mapbox-gl-draw/src/modes/draw_polygon";
 import MapboxGlDraw from "@mapbox/mapbox-gl-draw";
 import simplify from "@turf/simplify";
 const { geojsonTypes, cursors, types, updateActions, modes, events } =
@@ -16,7 +17,6 @@ FreehandMode.onSetup = function () {
 
   this.addFeature(polygon);
   this.clearSelectedFeatures();
-  doubleClickZoom.disable(this);
 
   // disable dragPan
   setTimeout(() => {
@@ -86,8 +86,7 @@ FreehandMode.fire = function () {
 };
 
 FreehandMode.onStop = function (state, ...args) {
-  MapboxGlDraw.modes.draw_polygon.onStop.call(this, state, ...args);
-  doubleClickZoom.enable(this);
+  DrawPolygon.onStop.call(this, state, ...args);
 
   setTimeout(() => {
     if (!this.map || !this.map.dragPan) return;
